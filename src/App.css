@@ -159,3 +159,51 @@ textarea:focus {
   transition: all 0.5s ease-in-out;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
+
+.postsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 100px;
+  gap: 30px;
+}
+
+.post {
+  max-width: 300px;
+  padding: 10px;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 18px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+hr {
+  width: 90%;
+  margin: 0;
+}
+
+.postContent {
+  scroll-behavior: smooth;
+  overflow: scroll;
+  height: 200px;
+}
+
+.author {
+  font-size: 15px;
+  font-weight: 700;
+  align-self: self-start;
+  margin-left: 20px;
+}
+
+@media screen and  (min-width: 800px) {
+
+.post {
+  min-width: 500px;
+}
+  
+}

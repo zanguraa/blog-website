@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 
-const CreatePost = () => {
+interface CreatePostProps {
+  isAuth: boolean;
+}
+
+const CreatePost = ({ isAuth }: CreatePostProps) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -28,6 +32,12 @@ const CreatePost = () => {
       console.error("Error creating post:", error);
     }
   };
+
+  useEffect(() => {
+    if (!isAuth) {
+      navigate("/login");
+    }
+  }, [isAuth, navigate]);
 
   return (
     <div className="createPostPage">

@@ -34,5 +34,128 @@ a:focus::after {
   width: 100%;
   height: 2px;
   background: red;
-  transition:  0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.createPostPage {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  padding-top: 100px;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+}
+
+h2 {
+  text-align: center;
+  color: black;
+}
+
+.cpContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #0a0a0a;
+  border-radius: 18px;
+  gap: 10px;
+}
+
+.cpContainer:hover {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.formInputs {
+  max-width: 450px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+}
+
+.inputContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin: 10px;
+  color: white;
+}
+
+input {
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  padding: 5px;
+}
+
+input:focus {
+  outline: none;
+}
+
+textarea {
+  border: none;
+  border-radius: 5px;
+  height: 100px;
+  padding: 5px;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.submitPost {
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  border: none;
+  margin-top: 20px;
+}
+
+.submitPost:hover {
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.5s ease-in-out;
+}
+
+.loginPage {
+  padding-top: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+
+.signInHeader {
+  font-size: 25px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.login-with-google-btn {
+  background-color: #0a0a0a;
+  color: white;
+  border: none;
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-with-google-btn:hover {
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }

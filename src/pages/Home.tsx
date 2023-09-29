@@ -1,8 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { DocumentData, collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase-config";
+import {
+  DocumentData,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+} from "firebase/firestore";
+import { auth, db } from "../firebase-config";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
-const Home = () => {
+interface LoginProps {
+  isAuth: boolean;
+}
+
+const Home = ({ isAuth }: LoginProps) => {
   const [posts, setPosts] = useState<DocumentData[]>([]);
 
   const postCollectionRef = collection(db, "posts");
@@ -11,18 +24,49 @@ const Home = () => {
     // Fetch posts from the database
     const fetchPosts = async () => {
       const data = await getDocs(postCollectionRef);
-      setPosts(data.docs.map((doc) => doc.data()));
+      setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     fetchPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(posts);
+
+  const deletePost = async (id: string) => {
+    if (!id) {
+      console.error("Invalid post ID");
+      return;
+    }
+
+    const postDoc = doc(db, "posts", id);
+
+    try {
+      await deleteDoc(postDoc);
+      console.log("Post deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  };
 
   return (
     <div className="homePage">
       <div className="postsContainer">
-        {posts.map((post) => (
-          <div className="post" key={post.id}>
-            <h2>{post.title}</h2>
+        {posts.map((post, index) => (
+          <div className="post" key={index}>
+            <div className="title">
+              <h2>{post.title}</h2>
+              <div className="deletePost">
+                {isAuth && post.author.id === auth.currentUser?.uid ? (
+                  <button
+                    onClick={() => {
+                      deletePost(post.id);
+                    }}
+                    className="deleteButton"
+                  >
+                    <FontAwesomeIcon icon={faTrash as IconProp} size="xl" />
+                  </button>
+                ) : null}
+              </div>
+            </div>
+
             <hr />
             <p className="postContent">{post.content}</p>
             <hr />

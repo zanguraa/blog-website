@@ -6,8 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
-
-
 interface LoginProps {
   setIsAuth: Dispatch<SetStateAction<boolean>>;
 }
@@ -18,9 +16,8 @@ const Login = ({ setIsAuth }: LoginProps) => {
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
       setIsAuth(true);
-      localStorage.setItem("isAuth", "true");
+      localStorage.setItem("isAuth", "true"); // Store the authentication state
       navigate("/");
-      console.log(result);
     });
   };
 

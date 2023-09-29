@@ -189,8 +189,8 @@ hr {
 }
 
 .postContent {
-  scroll-behavior: smooth;
-  overflow: scroll;
+  /* scroll-behavior: smooth;
+  overflow: scroll; */
   height: 200px;
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
@@ -10,10 +10,19 @@ import { auth } from "./firebase-config";
 function App() {
   const [isAuth, setIsAuth] = useState(false);
 
+  useEffect(() => {
+    // Check if the authentication state is stored in localStorage
+    const storedAuth = localStorage.getItem("isAuth");
+    if (storedAuth === "true") {
+      setIsAuth(true);
+    }
+  }, []);
+
   const signUserOut = () => {
     signOut(auth).then(() => {
       setIsAuth(false);
-      localStorage.clear();
+      // localStorage.clear();
+      localStorage.removeItem("isAuth");
       window.location.pathname = "/login";
     });
   };

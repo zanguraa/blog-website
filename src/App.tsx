@@ -28,6 +28,7 @@ function App() {
   };
 
   return (
+
     <Router>
       <nav>
         <Link to="/">Home</Link>
@@ -37,7 +38,8 @@ function App() {
           <>
             {" "}
             <button onClick={signUserOut}>Logout</button>
-            <Link to="/createpost">Create Post</Link>
+            <Link to="/createpost">Create Post
+</Link>
           </>
         )}
       </nav>
